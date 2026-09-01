@@ -1,27 +1,20 @@
-name: CI
+name: Simple Demo Workflow
 
-on:
-  push:
-  pull_request:
+# 1. Choose what event triggers this code
+on: [push]
 
-permissions:
-  contents: read
-
+# 2. Define the tasks (jobs) to run
 jobs:
-  test:
+  say-hello:
+    # Use a standard cloud server provided by GitHub
     runs-on: ubuntu-latest
 
+    # The actual steps to execute
     steps:
-      - name: Checkout repository
+      # Step 1: Download your repo code onto the server
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: Install pytest
-        run: python -m pip install pytest
-
-      - name: Run tests
-        run: python -m pytest -v
+      # Step 2: Run a basic terminal command
+      - name: Run Hello World
+        run: echo "Hello, World! Your GitHub Action is working perfectly."
